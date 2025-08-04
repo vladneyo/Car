@@ -12,7 +12,6 @@ float elapsedTime, currentTime, previousTime;
 int c = 0;
 
 void Gyro::setup(){
-  Serial.begin(115200);
   Wire.begin();                      // Initialize comunication
   Wire.beginTransmission(MPU);       // Start communication with MPU6050 // MPU=0x68
   Wire.write(0x6B);                  // Talk to the register 6B
@@ -23,7 +22,7 @@ void Gyro::setup(){
   delay(20);
 }
 
-void Gyro::loop(){
+PRY Gyro::getPRY(){
   // === Read acceleromter data === //
   Wire.beginTransmission(MPU);
   Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
@@ -59,12 +58,12 @@ void Gyro::loop(){
   roll = 0.96 * gyroAngleX + 0.04 * accAngleX;
   pitch = 0.96 * gyroAngleY + 0.04 * accAngleY;
 
-  // Print the values on the serial monitor
-  Serial.print(roll);
-  Serial.print("/");
-  Serial.print(pitch);
-  Serial.print("/");
-  Serial.println(yaw);
+  PRY pry;
+  pry.pitch = pitch;
+  pry.roll = roll;
+  pry.yaw = yaw;
+
+  return pry;
 }
 
 void Gyro::calculate_IMU_error(){

@@ -15,11 +15,12 @@ Gyro gyro;
 void setup() {
   // ServoSweep.setup();
   // carservo.setup();
+
+  Serial.begin(115200);
   gyro.setup();
 }
 
 void loop() {
-  gyro.loop();
   // ServoSweep.loop();
   
   // carservo.turn(LEFT);
@@ -33,4 +34,13 @@ void loop() {
 
   // carservo.turn(FORWARD);
   // delay(TURN_DELAY);
+
+  PRY pry = gyro.getPRY();
+  // Print the values on the serial monitor
+  Serial.print("Pitch: ");
+  Serial.print(pry.pitch);
+  Serial.print(" Roll: ");
+  Serial.print(pry.roll);
+  Serial.print(" Yaw: ");
+  Serial.println(pry.yaw);
 }
