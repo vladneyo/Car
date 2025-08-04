@@ -1,31 +1,36 @@
-#include "servo-config.h"
-#include "servo-utils.h"
+// #include "servo-config.h"
+// #include "servo-utils.h"
 
 // #include "servo-sweep.h"
 // ServoSweep ServoSweep;
 
-#include "car-servo.h"
-CarServo carservo;
+// #include "car-servo.h"
+// CarServo carservo;
 
-const int TURN_DELAY = 1000;
+#include "gyro.h"
+Gyro gyro;
+
+// const int TURN_DELAY = 1000;
 
 void setup() {
   // ServoSweep.setup();
-  carservo.setup();
+  // carservo.setup();
+  gyro.setup();
 }
 
 void loop() {
+  gyro.loop();
   // ServoSweep.loop();
   
-  carservo.turn(LEFT);
-  delay(TURN_DELAY);
+  // carservo.turn(LEFT);
+  // delay(TURN_DELAY);
 
-  carservo.turn(FORWARD);
-  delay(TURN_DELAY);
+  // carservo.turn(FORWARD);
+  // delay(TURN_DELAY);
 
-  carservo.turn(RIGHT);
-  delay(TURN_DELAY);
+  // carservo.turn(RIGHT);
+  // delay(TURN_DELAY);
 
-  carservo.turn(FORWARD);
-  delay(TURN_DELAY);
+  // carservo.turn(FORWARD);
+  // delay(TURN_DELAY);
 }
