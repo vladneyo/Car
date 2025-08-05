@@ -1,39 +1,31 @@
-// #include "servo-config.h"
-// #include "servo-utils.h"
-
-// #include "servo-sweep.h"
-// ServoSweep ServoSweep;
-
-// #include "car-servo.h"
-// CarServo carservo;
+#include "servo-config.h"
+#include "servo-utils.h"
 
 #include "gyro.h"
 Gyro gyro;
 
+#include "ultrasonic.h"
+Ultrasonic us;
+
+#include "car-servo.h"
+CarServo servo;
+
 // const int TURN_DELAY = 1000;
 
-void setup() {
-  // ServoSweep.setup();
-  // carservo.setup();
+float initAngle;
 
+void setup() {
   Serial.begin(115200);
+
+  servo.setup();
   gyro.setup();
+  us.setup();
+
+  servo.resetAngle();
+  initAngle = gyro.getPRY().yaw;
 }
 
-void loop() {
-  // ServoSweep.loop();
-  
-  // carservo.turn(LEFT);
-  // delay(TURN_DELAY);
-
-  // carservo.turn(FORWARD);
-  // delay(TURN_DELAY);
-
-  // carservo.turn(RIGHT);
-  // delay(TURN_DELAY);
-
-  // carservo.turn(FORWARD);
-  // delay(TURN_DELAY);
+void loop() { 
 
   PRY pry = gyro.getPRY();
   // Print the values on the serial monitor
@@ -43,4 +35,8 @@ void loop() {
   Serial.print(pry.roll);
   Serial.print(" Yaw: ");
   Serial.println(pry.yaw);
+
+  float deltaAngle = initAngle - pry.yaw;
+  servo.turnAngle(-(int)deltaAngle);
+  // delay(5);
 }

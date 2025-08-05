@@ -7,7 +7,7 @@ const int SWEEP_HOLD_MS   = 100;   // how long to hold each pulse
 
 struct ServoSweep{
   void setup();
-  void loop();
+  void sweep();
   private:
     Servo srv;
 };
