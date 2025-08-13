@@ -417,7 +417,7 @@ static esp_err_t index_handler(httpd_req_t *req)
   page += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n";
   page += "<script>var xhttp = new XMLHttpRequest();</script>";
   page += "<script>function getsend(arg) { xhttp.open('GET', arg +'?' + new Date().getTime(), true); xhttp.send() } </script>";
-  page += "<p align=center><IMG SRC='http://" + WiFiAddr + ":81/stream' style='width:280px;transform:rotate(0deg);'></p><br/><br/>";
+  page += "<p align=center><IMG SRC='http://" + WiFiAddr + ":81/stream' style='width:1280px;transform:rotate(0deg);'></p><br/><br/>";
 
   // page += "<p align=center>";
   // page += "<button style=background-color:lightgrey;width:90px;height:40px onmousedown=getsend('leftup') onmouseup=getsend('stop') ontouchstart=getsend('leftup') ontouchend=getsend('stop')><b>LeftUp</b></button>&nbsp;";
